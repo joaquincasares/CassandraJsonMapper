@@ -1,9 +1,8 @@
 # CassandraJsonMapper
 
 
-CassandraJsonMapper is a simple Cassandra client for Python that saves
-and gets JSON-style Python dictionaries to and from Cassandra.
-This is done by way of composite columns into a single row.
+CassandraJsonMapper is an Apache Cassandra Python driver developed for direct
+functionality to store JSON-style objects mapped into Cassandra composite columns.
 
 This is done via the main methods: `save(key)`, `get(key)`, `delete(key)`.
 
