@@ -351,8 +351,8 @@ class db(object):
                 dictionary_out, last_row = unflatten_dictionary(
                         self.cf.get(key,
                         column_count=request_size,
-                        read_consistency_level=read_consistency),
-                        column_start=column_start)
+                        read_consistency_level=read_consistency,
+                        column_start=column_start))
             else:
                 dictionary_out, last_row = unflatten_dictionary(
                         self.cf.get(key,
