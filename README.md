@@ -89,10 +89,14 @@ assert db.get('key2') == document['key2']
 In hopes of keeping this client simple, the following is not supported:
 
 * Cannot append to lists.
-* Lists can be replaced by lists of only equal or greater sizes.
-  Smaller sizes will contain the last elements of the previous array.
 * Cannot delete portions of a document.
 * Reads may not be returned in full, but paging is supported.
+
+
+## Future Implementations
+
+* Deleting portions of documents.
+* Better list support.
 
 
 ## Methods
