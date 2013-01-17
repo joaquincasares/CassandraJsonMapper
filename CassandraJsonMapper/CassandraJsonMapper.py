@@ -279,6 +279,17 @@ class ThreadedSave(threading.Thread):
 class db(object):
     """Class for easy database manipulation for Cassandra via dictionary."""
 
+    consistency_levels = {
+        'ONE': 1,
+        'QUORUM': 2,
+        'LOCAL_QUORUM': 3,
+        'EACH_QUORUM': 4,
+        'ALL': 5,
+        'ANY': 6,
+        'TWO': 7,
+        'THREE': 8,
+    }
+
 
     def __init__(self, keyspace, column_family, server_list=['localhost'],
                  write_consistency=ConsistencyLevel.ONE,
@@ -292,7 +303,12 @@ class db(object):
         self.cf = pycassa.ColumnFamily(self.pool, self.column_family)
 
         self.write_consistency = write_consistency
+        if self.write_consistency in self.consistency_levels:
+            self.write_consistency = self.consistency_levels[self.write_consistency]
+
         self.read_consistency = read_consistency
+        if self.read_consistency in self.consistency_levels:
+            self.read_consistency = self.consistency_levels[self.read_consistency]
 
         self.request_size = request_size
         self.batch_size = batch_size

@@ -11,7 +11,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(name='CassandraJsonMapper',
-      version='1.0.1',
+      version='1.1.0',
       description='Simple JSON to Cassandra Python client.',
       long_description=read('README.md'),
       author='Joaquin Casares',
