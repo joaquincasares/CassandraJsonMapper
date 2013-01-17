@@ -345,7 +345,12 @@ class db(object):
                         row = map(repr, row)
 
                         # Save to Cassandra
-                        b.insert(key, {tuple(row[:-1]): row[-1]})
+                        try:
+                            b.insert(key, {tuple(row[:-1]): row[-1]})
+                        except TypeError:
+                            raise ValueError('An error occurred while writing to Cassandra. '
+                                             'Ensure that this column family has enough composite columns '
+                                             'width for this JSON.')
 
             except InvalidRequestException:
                 raise KeyError('Missing Value for %s.%s[%s][%s]. Example: {%s: {%s: <value>}}' %
